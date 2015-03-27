@@ -23,10 +23,10 @@
             if($this->request->is('post')){
                 $this->Post->create();
                 if($this->Post->save($this->request->data)){
-                    $this->Session->setFlash(__('Your post has been saved.'));
+                    $this->Session->setFlash(__('Your post has been saved.'), 'flash_success');
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('Unable to add your post.'));
+                $this->Session->setFlash(__('Unable to add your post.'), 'flash_warning');
             }
         }
         
@@ -43,10 +43,10 @@
             if ($this->request->is(array('post', 'put'))) {
                 $this->Post->id = $id;
                 if ($this->Post->save($this->request->data)) {
-                    $this->Session->setFlash(__('Your post has been updated.'));
+                    $this->Session->setFlash(__('Your post has been updated.'), 'flash_success');
                     return $this->redirect(array('action' => 'index'));
                 }
-                $this->Session->setFlash(__('Unable to update your post.'));
+                $this->Session->setFlash(__('Unable to update your post.'), 'flash_warning');
             }
 
             if (!$this->request->data) {
@@ -61,11 +61,11 @@
 
             if ($this->Post->delete($id)) {
                 $this->Session->setFlash(
-                    __('The post with id: %s has been deleted.', h($id))
+                    __('The post with id: %s has been deleted.', h($id)), 'flash_delete'
                 );
             } else {
                 $this->Session->setFlash(
-                    __('The post with id: %s could not be deleted.', h($id))
+                    __('The post with id: %s could not be deleted.', h($id)), 'flash_warning'
                 );
             }
 

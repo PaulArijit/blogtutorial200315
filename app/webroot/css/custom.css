@@ -1,0 +1,13 @@
+.label-danger a, .label-warning a, .label-info a{
+    color: #FFF;
+    outline: 0;
+}
+.label-danger a:hover, .label-warning a:hover, .label-info a:hover{
+    color: #FFF;
+    text-decoration: underline;
+    outline: 0;
+}
+.label-danger a:focus, .label-warning a:focus, .label-info a:focus{
+    color: #FFF;
+    outline: 0;
+}
