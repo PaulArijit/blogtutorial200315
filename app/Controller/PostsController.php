@@ -1,10 +1,19 @@
 <?php
 
     class PostsController extends AppController{
+        
+        public $components = array('Paginator');
         public $helpers = array('Html', 'Form');
         
         public function index(){
-           $this->set('posts', $this->Post->find('all'));
+           $conditions = array();
+           $this->paginate = array(
+                    'limit' 		=> 8,
+                    'order' 		=> 'Post.id DESC',
+                    'conditions' 	=> $conditions
+                ); 
+           $this->Post->recursive = 0;
+           $this->set('posts', $this->Paginator->paginate());
         }
         
         public function view($id = null) {

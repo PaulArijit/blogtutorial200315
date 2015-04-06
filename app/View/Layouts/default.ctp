@@ -28,7 +28,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<?php
 		echo $this->Html->meta('icon');
 
-		echo $this->Html->css('bootstrap.min');
+		echo $this->Html->css('bootstrap');
 		echo $this->Html->css('custom');
 		echo $this->Html->css('bootstrap-table');
 		echo $this->Html->css('font-awesome.min');
@@ -37,8 +37,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('styles');
 		
                 
-                echo $this->Html->script('sleetmute');
-                
+                echo $this->Html->script('jquery-1.11.1.min');
+                echo $this->Html->script('common');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -83,9 +83,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<li><a href="forms.html"><span class="glyphicon glyphicon-pencil"></span> Forms</a></li>
 			<li><a href="panels.html"><span class="glyphicon glyphicon-info-sign"></span> Alerts &amp; Panels</a></li>
 			<li class="parent ">
-				<a href="#">
-					<span class="glyphicon glyphicon-list"></span> Posts <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
-				</a>
+				<?php echo $this->Html->link('<span class="glyphicon glyphicon-list"></span>'.'&nbsp;'.'Blog Posts'. '<span data-toggle="collapse" href="#sub-item-1" class="icon pull-right">'.'<em class="glyphicon glyphicon-s glyphicon-plus"></em>'.'</span>', array('controller' => 'posts', 'action' => ''), array('escape'=>FALSE)); ?>
 				<ul class="children collapse" id="sub-item-1">
 					<li>
                                             <?php echo $this->Html->link('<span class="glyphicon glyphicon-share-alt"></span>'.'&nbsp;'.'Add Post', array('controller' => 'posts', 'action' => 'add'), array('escape'=>FALSE)); ?>
@@ -108,16 +106,18 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <?php echo $this->Session->flash(); ?>
             
         </div>
-    
 
-        <script src="js/jquery-1.11.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script>
+        <?php
+        echo $this->Html->script('bootstrap.min');
+        echo $this->Html->script('bootstrap-datepicker');
+//        echo $this->Html->script('chart.min');
+//        echo $this->Html->script('chart-data');
+//        echo $this->Html->script('easypiechart');
+//        echo $this->Html->script('easypiechart-data');
+        
+        ?>
+	<script type="text/javascript">
+            $(document).ready(function() {
 		$('#calendar').datepicker({
 		});
 
@@ -134,6 +134,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
+                
+                });
 	</script>
 	<!--<?php echo $this->element('sql_dump'); ?>-->
 </body>
